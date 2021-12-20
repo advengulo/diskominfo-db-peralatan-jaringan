@@ -18,7 +18,8 @@ class CreateGangguansTable extends Migration
             $table->integer('id_peralatan')->unsigned();
             $table->string('ciri_ciri_gangguan');
             $table->string('dampak_gangguan');
-            $table->date('tanggal_pengajuan');
+            $table->datetime('tanggal_pengajuan');
+            $table->boolean('status')->default(false);
         });
     }
 

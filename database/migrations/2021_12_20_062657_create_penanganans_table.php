@@ -16,7 +16,7 @@ class CreatePenanganansTable extends Migration
         Schema::create('penanganans', function (Blueprint $table) {
             $table->id();
             $table->integer('id_gangguan')->unsigned();
-            $table->date('waktu_penanganan');
+            $table->datetime('waktu_penanganan');
             $table->string('nama');
             $table->text('tindakan');
             $table->string('hasil');
