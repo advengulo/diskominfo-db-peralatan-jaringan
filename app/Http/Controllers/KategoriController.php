@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori;
+use App\Models\Peralatan;
 use Illuminate\Http\Request;
 
 class KategoriController extends Controller
@@ -16,7 +17,15 @@ class KategoriController extends Controller
     {
         $kategoris = Kategori::all();
 
-        return view('pages.kategori.index', compact('kategoris'));
+        $peralatan = Peralatan::all();
+
+        $total = [];
+
+        foreach($kategoris as $kategori){
+            $total[$kategori->id] = $peralatan->where('kategori_id', $kategori->id)->count();
+        }
+
+        return view('pages.kategori.index', compact('kategoris', 'total'));
     }
 
     /**

@@ -19,4 +19,9 @@ class Penanganan extends Model
         'hasil',
         'rekomendasi'
     ];
+
+    public function gangguan()
+    {
+        return $this->hasOne(Gangguan::class, 'id', 'id_gangguan');
+    }
 }

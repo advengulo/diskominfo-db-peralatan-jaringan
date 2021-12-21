@@ -44,11 +44,25 @@
                         <div class="col-md-6">{{$peralatan->deskripsi_peralatan}}</div>
                     </div>
                 </li>
+                <li class="list-group-item">
+                    <div class="d-flex justify-content-around">
+                        <div class="col-md-6" style="font-weight: bold">Status Barang</div>
+                        <div class="col-md-6">
+                            @if ($peralatan->status == "Baik")
+                                <span class="badge bg-primary">{{$peralatan->status}}</span>
+                            @elseif ($peralatan->status == "Rusak Sementara")
+                                <span class="badge bg-warning">{{$peralatan->status}}</span>
+                            @else
+                                <span class="badge bg-danger">{{$peralatan->status}}</span>
+                            @endif
+                        </div>
+                    </div>
+                </li>
             </ul>
         </div>
         <div class="col-md-6">
             <h5>Informasi Tambahan</h5>
-            <ul class="list-group">
+            {{-- <ul class="list-group">
                 <li class="list-group-item">
                     <div class="d-flex justify-content-around">
                     <div class="col-md-6" style="font-weight: bold">Nama Barang</div>
@@ -85,7 +99,7 @@
                         <div class="col-md-6">{{$peralatan->deskripsi_peralatan}}</div>
                     </div>
                 </li>
-            </ul>
+            </ul> --}}
         </div>
     </div>
 @endsection

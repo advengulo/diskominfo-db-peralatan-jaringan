@@ -1,32 +1,50 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Peralatan</h1>
+    <h1>Daftar gangguan</h1>
     <table class="table table-bordered data-table" id="peralatan_table">
         <thead>
             <tr>
                 <th>No</th>
-                <th>ID Peralatan</th>
+                <th>Nama Peralatan</th>
                 <th>Ciri ciri gangguan</th>
                 <th>Dampak Gangguan</th>
                 <th>Tanggal Pengajuan</th>
                 <th>status</th>
-                <th width="200px">Action</th>
+                <th>Waktu Penanganan</th>
+                <th>Nama</th>
+                <th>Tindakan</th>
+                <th>Hasil</th>
+                <th>Rekomendasi</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($penanganans as $penanganan)
                 <tr>
                     <td></td>
-                    <td>{{$penanganan->id_peralatan}}</td>
-                    <td>{{$penanganan->ciri_ciri_gangguan}}</td>
-                    <td>{{$penanganan->dampak_gangguan}}</td>
-                    <td>{{$penanganan->tanggal_pengajuan}}</td>
-                    <td>{{$penanganan->status}}</td>
+                    <td>{{$penanganan->gangguan->peralatan->nama_peralatan}}</td>
+                    <td>{{$penanganan->gangguan->ciri_ciri_gangguan}}</td>
+                    <td>{{$penanganan->gangguan->dampak_gangguan}}</td>
+                    <td>{{$penanganan->gangguan->tanggal_pengajuan}}</td>
                     <td>
-                        {{-- <a href="{{ route('penanganans.show', $penanganan->id)}}" class="btn btn-sm btn-primary">Lihat</a> --}}
-                        <a href="{{ route('penanganans.edit', $penanganan->id)}}" class="btn btn-sm btn-warning">Tanganin</a>
-                        {{-- <a href="{{ route('penanganans.destroy', $penanganan->id)}}" class="btn btn-sm btn-danger">Hapus</button> --}}
+                        @if ($penanganan->gangguan->status == true)
+                            <span class="badge rounded-pill bg-success">Close</span>
+                        @else
+                            <span class="badge rounded-pill bg-danger">Open</span>
+                        @endif
+                    </td>
+                    <td>{{$penanganan->waktu_penanganan}}</td>
+                    <td>{{$penanganan->nama}}</td>
+                    <td>{{$penanganan->tindakan}}</td>
+                    <td>{{$penanganan->hasil}}</td>
+                    <td>{{$penanganan->rekomendasi}}</td>
+                    <td>
+                        @if ($penanganan->gangguan->status == true)
+                            <span class="btn btn-sm btn-success">Selesai</span>
+                        @else
+                            <a href="{{ route('penanganan.edit', $penanganan->id)}}" class="btn btn-sm btn-warning">Tangani</a>
+                        @endif
                     </td>
                 </tr>
             @endforeach
@@ -42,7 +60,7 @@
                 "pageLength": 25,
                 'columnDefs': [
                     {
-                    'targets': 8,
+                    'targets': 6,
                     'searchable': false,
                     'orderable': false,
                     },

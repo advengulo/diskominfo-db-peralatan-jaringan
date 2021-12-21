@@ -27,7 +27,15 @@
                     <td>{{$peralatan->kategori->nama}}</td>
                     <td>{{$peralatan->username}}</td>
                     <td>{{$peralatan->password}}</td>
-                    <td>{{$peralatan->status}}</td>
+                    <td>
+                        @if ($peralatan->status == "Baik")
+                            <span class="badge bg-primary">{{$peralatan->status}}</span>
+                        @elseif ($peralatan->status == "Rusak Sementara")
+                            <span class="badge bg-warning">{{$peralatan->status}}</span>
+                        @else
+                            <span class="badge bg-danger">{{$peralatan->status}}</span>
+                        @endif
+                    </td>
                     <td>
                         <a href="{{ route('peralatans.show', $peralatan->id)}}" class="btn btn-sm btn-primary">Lihat</a>
                         <a href="{{ route('peralatans.edit', $peralatan->id)}}" class="btn btn-sm btn-warning">Edit</a>

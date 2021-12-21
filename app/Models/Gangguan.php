@@ -17,4 +17,9 @@ class Gangguan extends Model
         'dampak_gangguan',
         'tanggal_pengajuan'
     ];
+
+    public function peralatan()
+    {
+        return $this->hasOne(Peralatan::class, 'id', 'id_peralatan');
+    }
 }
