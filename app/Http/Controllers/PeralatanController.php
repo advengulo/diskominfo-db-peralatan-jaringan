@@ -95,8 +95,7 @@ class PeralatanController extends Controller
      */
     public function destroy($id)
     {
-        dd("test");
-        Peralatan::where('id', $id)->first()->delete();
+        Peralatan::findOrFail($id)->delete();
 
         return redirect()->route('peralatans.index')->with('deleted','Peralatan berhasil dihapus');
     }

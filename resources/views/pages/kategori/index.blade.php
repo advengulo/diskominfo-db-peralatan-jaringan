@@ -3,7 +3,18 @@
 @section('content')
     <h1>Kategori</h1>
     <a href="{{ route('kategoris.create') }}" type="button" class="btn btn-success mb-3">Tambah Data</a>
-    <table class="table table-bordered data-table" id="kategori">
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Berhasil! </strong> {{ $message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @elseif($message = Session::get('error'))
+        <div class="alert alert-alert alert-dismissible fade show" role="alert">
+            <strong>Gagal! </strong> {{ $message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    <table class="table table-striped" id="kategori">
         <thead>
             <tr>
                 <th width="20px">No</th>
@@ -20,7 +31,12 @@
                     <td>{{$total[$kategori->id]}}</td>
                     <td>
                         <a href="{{ route('kategoris.edit', $kategori->id)}}" class="btn btn-sm btn-warning">Edit</a>
-                        <a href="{{ route('kategoris.destroy', $kategori->id)}}" class="btn btn-sm btn-danger">Hapus</a>
+                        <form class="btn btn-sm" action="{{route('kategoris.destroy', $kategori->id)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-sm btn-danger">Hapus</button>
+                        </form>
+                        {{-- <a href="{{ route('kategoris.destroy', $kategori->id)}}" class="btn btn-sm btn-danger">Hapus</a> --}}
                     </td>
                 </tr>
             @endforeach

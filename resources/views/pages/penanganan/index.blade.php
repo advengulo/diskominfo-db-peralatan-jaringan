@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Daftar gangguan</h1>
-    <table class="table table-bordered data-table" id="peralatan_table">
+    <table class="table table-striped" id="peralatan_table">
         <thead>
             <tr>
                 <th>No</th>

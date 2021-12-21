@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GangguanController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PeralatanController;
 use App\Http\Controllers\PenangananController;
 
@@ -17,9 +18,7 @@ use App\Http\Controllers\PenangananController;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.dashboard');
-});
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 
 // Auth::routes();
 

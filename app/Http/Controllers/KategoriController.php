@@ -98,6 +98,13 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $peralatans = Peralatan::where('kategori_id', $id)->first();
+        if($peralatans){
+            return redirect()->back()->with('error', 'Kategori terikat dengan barang');
+        }
+        else{
+            Kategori::findOrFail($id)->delete();
+            return redirect()->back()->with('success', 'Kategori berhasil dihapus');
+        }
     }
 }
